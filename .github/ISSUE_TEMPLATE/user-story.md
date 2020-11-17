@@ -1,7 +1,7 @@
 ---
 name: User Story
 about: User Story purpose issue.
-title: '"US-ID título"'
+title: 'ID-da-User-Story-aqui! - "título"'
 labels: UserStory
 assignees: gabriel-paiva
 
