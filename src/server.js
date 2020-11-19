@@ -1,15 +1,22 @@
 const express = require('express');
 
 // Inicializando o app utilizando o express;
+
 const app = express();
 
 // Adicionar ao app a utilização do express.json();
 
 app.use(express.json());
 
-app.get('/', function(req, res) {
-    res.send('Hello Wolrd.')
+const port = 8000
+
+// Definindo método GET HTTP
+
+app.get('/', (req, res) => {
+    res.send('<title>GOTA<title>')
 })
 
-app.listen(3333, () => console.log("Listening on localhost:3333."));
-
+// Escutando com o app na porta 8000
+app.listen(port, () => {
+        console.log('App listening at http://localhost:8000');
+})
