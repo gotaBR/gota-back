@@ -1,7 +1,6 @@
 const express = require('express');
 const routes = require('./routes.js');
 
-
 // Inicializando o app utilizando o express;
 
 const app = express();
