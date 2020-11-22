@@ -1,4 +1,5 @@
 const connection = require('../database/connection')
+const bcrypt = require('bcrypt');
 
 module.exports = {
     
@@ -14,13 +15,16 @@ module.exports = {
                 
                 return response.status(400).send('Este email ja esta em uso!');
             }
-                await connection('usuarios').insert({
-                    name,
-                    email,
-                    senha
-                });
-                
-                return response.status(201).send("Usuário criado com sucesso!")
+            
+            const encryptedPassword = await bcrypt.hash(senha, 10)            
+
+            await connection('usuarios').insert({
+                name,
+                email,
+                senha: encryptedPassword
+            });
+            
+            return response.status(201).send("Usuário criado com sucesso!")
             }
             
             catch (error) {
