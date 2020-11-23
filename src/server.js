@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json());
 
-const port = 8000
+const port = 8000;
 
 // Definindo método GET HTTP
 
@@ -18,5 +18,5 @@ app.use(routes);
 // Escutando com o app na porta 8000
 
 app.listen(port, () => {
-        console.log('App listening at http://localhost:8000');
+  console.log('App listening at http://localhost:8000');
 });
