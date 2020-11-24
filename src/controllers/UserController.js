@@ -10,7 +10,7 @@ module.exports = {
       const emailExists = await connection('usuarios').where('email', email).select('email').first();
 
       if (emailExists) {
-        return response.status(400).send('Este email ja esta em uso!');
+        return response.status(400).json({ message: 'Este email ja esta em uso!' });
       }
       const salt = bcrypt.genSaltSync(10);
       const encryptedPassword = await bcrypt.hash(senha, salt);
@@ -23,7 +23,7 @@ module.exports = {
 
       return response.status(201).send('Usuário criado com sucesso!');
     } catch (error) {
-      return response.status(400).send(error);
+      return response.status(400).send(error.message);
     }
   },
 
