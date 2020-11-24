@@ -8,6 +8,7 @@ const SessionController = require('./controllers/SessionController');
 routes.get('/users', UserController.index);
 routes.post('/user', UserController.create);
 routes.delete('/user/:id', UserController.remove);
+routes.put('/user', UserController.editName);
 routes.post('/login', SessionController.login);
 
 module.exports = routes;
