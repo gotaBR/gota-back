@@ -52,4 +52,20 @@ module.exports = {
       return response.status(400).send(error);
     }
   },
+
+  async editName(request,response){
+    
+    const id = request.headers.authorization;
+    const {newName} = request.body;
+
+    try{
+      await connection('usuarios').where('id', id).update({name: newName});
+    }
+    catch(error){
+      console.log(error);
+      return response.status(400).send(error);
+    }
+
+    return response.status(200).send({"message":"Nome alterado com sucesso", id, newName});
+  }
 };
