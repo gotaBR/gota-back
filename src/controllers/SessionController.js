@@ -4,11 +4,10 @@ const connection = require('../database/connection');
 module.exports = {
   async login(request, response) {
     const { email, senha } = request.body;
-    console.log({ email, senha });
+
     let user;
     try {
       [user] = await connection('usuarios').where('email', email).select('*');
-      console.log(user);
 
       if (!user) {
         return response.status(404).send('Could not find this email.');
