@@ -12,8 +12,8 @@ module.exports = {
       if (emailExists) {
         return response.status(400).send('Este email ja esta em uso!');
       }
-
-      const encryptedPassword = await bcrypt.hash(senha, 10);
+      const salt = bcrypt.genSaltSync(10);
+      const encryptedPassword = await bcrypt.hash(senha, salt);
 
       await connection('usuarios').insert({
         name,
