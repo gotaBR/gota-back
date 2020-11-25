@@ -52,4 +52,5 @@ module.exports = {
       return response.status(400).send(error);
     }
   },
+
 };
