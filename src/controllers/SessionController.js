@@ -18,8 +18,10 @@ module.exports = {
 
     return bcrypt.compare(senha, user.senha, (error, same) => {
       if (same) {
-        const { id } = user;
-        return response.status(200).send({ id, message: 'Usuário logado' });
+        const { id, name } = user;
+        return response.status(200).send({
+          id, email, name, message: 'Usuário logado',
+        });
       }
 
       return response.status(401).send({ error, message: 'Senha errada' });
