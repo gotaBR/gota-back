@@ -21,7 +21,11 @@ module.exports = {
         senha: encryptedPassword,
       });
 
-      return response.status(201).send('Usuário criado com sucesso!');
+      const id = await connection('usuarios').where('email', email).select('id').first();
+
+      return response.status(201).send({
+        message: 'Usuário criado com sucesso!', id, email, name,
+      });
     } catch (error) {
       return response.status(400).send(error.message);
     }
@@ -43,5 +47,14 @@ module.exports = {
 
     return response.status(201).send('Usuário deletado');
   },
+
+  /* async index(request, response) {
+    try {
+      const users = await connection('usuarios').select('*');
+      return response.send({ users });
+    } catch (error) {
+      return response.status(400).send(error);
+    }
+  }, */
 
 };
