@@ -32,7 +32,6 @@ module.exports = {
   },
 
   async remove(request, response) {
-    /* const auth = request.headers.authorization; */
     const id = request.params;
 
     try {
@@ -47,14 +46,5 @@ module.exports = {
 
     return response.status(201).send('Usuário deletado');
   },
-
-  /* async index(request, response) {
-    try {
-      const users = await connection('usuarios').select('*');
-      return response.send({ users });
-    } catch (error) {
-      return response.status(400).send(error);
-    }
-  }, */
 
 };

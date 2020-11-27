@@ -8,12 +8,11 @@ module.exports = {
     let user;
     try {
       [user] = await connection('usuarios').where('email', email).select('*');
+      if (user.lenght === 0) {
+        return response.status(404).send('Usuário não encontrado.');
+      }
     } catch (error) {
       return response.status(400).send(error.message);
-    }
-
-    if (!user) {
-      return response.status(404).send('Could not find this email.');
     }
 
     return bcrypt.compare(senha, user.senha, (error, same) => {
