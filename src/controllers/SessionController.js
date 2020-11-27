@@ -9,7 +9,7 @@ module.exports = {
     try {
       [user] = await connection('usuarios').where('email', email).select('*');
       if (user.lenght === 0) {
-        return response.status(404).send('Usuário não encontrado.');
+        return response.status(404).send('Não foi possivel acessar esta conta! O email ou senha informados podem estar incorretos.');
       }
     } catch (error) {
       return response.status(400).send(error.message);
@@ -23,7 +23,7 @@ module.exports = {
         });
       }
 
-      return response.status(401).send({ error, message: 'Senha errada' });
+      return response.status(401).send({ error, message: 'Não foi possivel acessar esta conta! O email ou senha informados podem estar incorretos.' });
     });
   },
 };
