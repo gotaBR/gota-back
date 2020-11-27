@@ -29,7 +29,6 @@ module.exports = {
 
       await connection('usuarios').where('id', id).update({ email: newEmail });
     } catch (error) {
-      console.log(error);
       return response.status(400).send(error.message);
     }
 
@@ -41,7 +40,7 @@ module.exports = {
     const { newPassword, oldPassword } = request.body;
 
     if (newPassword === oldPassword) {
-      return response.status(401).send('Esta senha é igual a senha anterior!');
+      return response.status(401).send('Utilize uma senha diferente da anterior!');
     }
 
     try {
