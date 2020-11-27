@@ -10,8 +10,7 @@ module.exports = {
     try {
       await connection('usuarios').where('id', id).update({ name: newName });
     } catch (error) {
-      console.log(error);
-      return response.status(400).send(error);
+      return response.status(400).send(error.message);
     }
 
     return response.status(200).send({ message: 'Nome alterado com sucesso', id, newName });
@@ -31,7 +30,7 @@ module.exports = {
       await connection('usuarios').where('id', id).update({ email: newEmail });
     } catch (error) {
       console.log(error);
-      return response.status(400).send(error);
+      return response.status(400).send(error.message);
     }
 
     return response.status(200).send({ message: 'Email alterado com sucesso', id, newEmail });
@@ -60,7 +59,7 @@ module.exports = {
       }
       return response.status(401).json({ error: 'Senha incorreta!' });
     } catch (error) {
-      return response.status(400).send(error);
+      return response.status(400).send(error.message);
     }
   },
 

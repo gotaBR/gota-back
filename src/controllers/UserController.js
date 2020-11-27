@@ -42,7 +42,7 @@ module.exports = {
         return response.status(400).send('Usuário não encontrado.');
       }
     } catch (error) {
-      return response.status(400).send(error);
+      return response.status(400).send(error.message);
     }
 
     return response.status(201).send('Usuário deletado');
