@@ -25,4 +25,15 @@ module.exports = {
       response.status(400).send(error.message);
     }
   },
+
+  async index(request, response) {
+    const id = request.headers.authorization;
+
+    try {
+      const data = await connection('contas').where('user_id', id).select('*');
+      return response.status(200).send(data);
+    } catch (error) {
+      return response.status(400).send(error.message);
+    }
+  },
 };
