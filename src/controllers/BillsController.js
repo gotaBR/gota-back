@@ -4,7 +4,7 @@ module.exports = {
   async create(request, response) {
     const id = request.headers.authorization;
     const {
-      data, valor, consumo, empresa, categoria, status,
+      data, valor, consumo, empresa, categoria, status, regiao, municipio,
     } = request.body;
 
     try {
@@ -16,6 +16,8 @@ module.exports = {
         empresa,
         categoria,
         status,
+        regiao,
+        municipio,
       });
 
       response.status(201).send('Conta salva com sucesso.');
