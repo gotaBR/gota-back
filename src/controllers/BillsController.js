@@ -36,4 +36,21 @@ module.exports = {
       return response.status(400).send(error.message);
     }
   },
+
+  async delete(request, response) {
+    const userId = request.headers.authorization;
+    const { id } = request.headers;
+
+    try {
+      const bill = await connection('contas').where('id', id).where('user_id', userId).delete();
+
+      if (!bill) {
+        return response.status(400).send('Conta não encontrada.');
+      }
+
+      return response.status(201).send('Conta removida.');
+    } catch (error) {
+      return response.status(400).send(error.message);
+    }
+  },
 };
