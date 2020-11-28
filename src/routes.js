@@ -17,5 +17,6 @@ routes.post('/login', SessionController.login);
 
 routes.post('/profile/new_bill', BillsController.create);
 routes.get('/profile/bills', BillsController.index);
+routes.delete('/profile/delete_bill', BillsController.delete);
 
 module.exports = routes;
