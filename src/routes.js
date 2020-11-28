@@ -16,5 +16,6 @@ routes.put('/profile/new_password', ProfileController.createNewPassword);
 routes.post('/login', SessionController.login);
 
 routes.post('/profile/new_bill', BillsController.create);
+routes.get('/profile/bills', BillsController.index);
 
 module.exports = routes;
