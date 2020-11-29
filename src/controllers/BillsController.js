@@ -8,7 +8,7 @@ module.exports = {
     } = request.body;
 
     try {
-      await connection('contas').where('user_id', id).insert({
+      await connection('contas').insert({
         user_id: id,
         data,
         consumo,
