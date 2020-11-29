@@ -51,12 +51,14 @@ module.exports = {
         return response.status(404).send('Usuário não encontrado!');
       }
 
-      if (bcrypt.compareSync(oldPassword, currentPassword)) {
-        const encryptedPassword = await bcrypt.hash(newPassword, 10);
-        await connection('usuarios').where('id', id).update({ senha: encryptedPassword });
-        return response.status(201).send('Senha alterada com sucesso!');
-      }
-      return response.status(401).json({ error: 'Senha incorreta!' });
+      return bcrypt.compare(oldPassword, currentPassword, async (error, same) => {
+        if (same) {
+          const encryptedPassword = await bcrypt.hash(newPassword, 10);
+          await connection('usuarios').where('id', id).update({ senha: encryptedPassword });
+          return response.status(201).send('Senha alterada com sucesso!');
+        }
+        return response.status(401).json({ error: 'Senha incorreta!' });
+      });
     } catch (error) {
       return response.status(400).send(error.message);
     }
