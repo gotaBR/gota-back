@@ -7,8 +7,8 @@ module.exports = {
 
     let user;
     try {
-      [user] = await connection('usuarios').where('email', email).select('*');
-      if (user.length === 0) {
+      user = await connection('usuarios').where('email', email).select('*').first();
+      if (!user) {
         return response.status(404).send('Não foi possivel acessar esta conta! O email ou senha informados podem estar incorretos.');
       }
     } catch (error) {
