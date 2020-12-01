@@ -23,7 +23,7 @@ module.exports = {
         });
       }
 
-      return response.status(401).send({ error, message: 'Não foi possivel acessar esta conta! O email ou senha informados podem estar incorretos.' });
+      return response.status(401).send('Não foi possivel acessar esta conta! O email ou senha informados podem estar incorretos.');
     });
   },
 };
